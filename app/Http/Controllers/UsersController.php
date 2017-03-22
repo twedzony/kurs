@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;  
 
 class UsersController extends Controller
 {
@@ -54,16 +54,25 @@ class UsersController extends Controller
             abort(403,'Brak dostępu');
         }
 
-        $user = User::findOrFail($id);
-
-        $validator = Validator::make($request->all(),[
-            'name'=>'required'
+        $this->validate($request,[
+            'name'=>'required|min:3',
+            'email'=> [
+                'required',
+                'email',
+                Rule::unique('users'),
+            ]
+        ],[
+            'required' => 'Pole jest wymagane',
+            'email' => 'Adres email jest niepoprawny',
+            'unique' => 'Ten adres jest już zajęty',
+            'min' => 'Pole musi mieć minimum 3 znaki',
         ]);
 
         if ($validator->fails()){
             return back()->withErrors($validator)->withInput();
         }
 
+        $user = User::findOrFail($id);
         $user->name  = $request->name;
         $user->email = $request->email;
         $user->sex   = $request->sex;
