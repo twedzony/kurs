@@ -59,7 +59,7 @@ class UsersController extends Controller
             'email'=> [
                 'required',
                 'email',
-                Rule::unique('users'),
+                Rule::unique('users')->ignore($id),
             ]
         ],[
             'required' => 'Pole jest wymagane',
@@ -68,17 +68,20 @@ class UsersController extends Controller
             'min' => 'Pole musi mieć minimum 3 znaki',
         ]);
 
-        if ($validator->fails()){
-            return back()->withErrors($validator)->withInput();
-        }
-
         $user = User::findOrFail($id);
         $user->name  = $request->name;
         $user->email = $request->email;
         $user->sex   = $request->sex;
         $user->save();
 
+        $upload_path = 'public/users/' . $id . '/avatars';
+
+        $path = $request->file('avatar')->store($upload_path);
+
+        var_dump($path); exit;
+
         return back();
+
     }
 
     /**
