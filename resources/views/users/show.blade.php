@@ -11,7 +11,9 @@
                     <a href="{{url('/users/' .$user->id. '/edit')}}" class="pull-right"><small>Edytuj</small></a>
                     @endif
                 </div>
+
                 <div class="panel-body text-center">
+                    <img src="{{ url('user-avatar/' . $user->id . '/250') }}" alt="" class="thumbnail img-responsive">
                     <h2><a href="{{url('/users/' . $user->id)}}"/>{{ $user->name }}</a></h2>
                         <p>
                         @if ($user->sex === 'm')
