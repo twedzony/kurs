@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         for ($i = 1; $i <= $number_of_users; $i++)
         {
 
-            if ($i === 0){
+            if ($i === 1){
                 DB::table('users')->insert([
                     'name' => 'Tomasz Wędzony',
                     'sex' => 'm',
@@ -53,7 +53,7 @@ class DatabaseSeeder extends Seeder
                 DB::table('users')->insert([
                     'name' => $name,
                     'sex' => $sex,
-                    'email' => str_replace('-', '', str_slug($name)) . '' . $faker->safeEmailDomain,
+                    'email' => str_replace('-', '', str_slug($name)) . '@' . $faker->safeEmailDomain,
                     'password' => bcrypt($password),
 
                 ]);

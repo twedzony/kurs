@@ -6,7 +6,10 @@
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-default">
                 <div class="panel-heading"> Edycja Użytkownika: <div class="pull-right"><strong>{{$user->name}}</strong></div></div>
-                <div class="panel-body">
+                <div class="panel-body">    
+
+                    <img src="{{ asset('storage/users/' . $user->id . '/avatars/' .  $user->avatar) }}" alt="Avatar" class="img-responsive">
+
                     <form action="{{url('/users/' . $user->id)}}" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     {{ method_field('PATCH') }}
