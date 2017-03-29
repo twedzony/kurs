@@ -9,15 +9,16 @@ use Illuminate\Validation\Rule;
 
 class UsersController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('permission');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
-    }
 
     public function show($id)
     {
