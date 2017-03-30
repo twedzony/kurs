@@ -41,6 +41,16 @@
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                    
+                    <form action="{{url('/search')}}" method="GET" class="navbar-form navbar-left">
+                        <div class="input-group">
+                            <input type="text" name="q" class="form-control" placeholder="Szukaj...">
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                            </span>
+                        </div>    
+                    </form>
+
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         &nbsp;
