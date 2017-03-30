@@ -15,10 +15,10 @@ class CheckUserPermission
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {
-        var_dump($request->user); die;
+    { 
+        /*var_dump($request->user); die;*/
 
-        if(Auth::checl() && $id != Auth::id()){
+        if(Auth::check() && $request->user != Auth::id()){
             abort(403,'Brak dostępu');
         }
         return $next($request);

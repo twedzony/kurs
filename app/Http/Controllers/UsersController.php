@@ -12,7 +12,7 @@ class UsersController extends Controller
 
     public function __construct()
     {
-        $this->middleware('permission');
+        $this->middleware('permission',['except' => ['show']]);
     }
     /**
      * Display a listing of the resource.
@@ -34,9 +34,6 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        if($id != Auth::id()){
-            abort(403,'Brak dostępu');
-        }
 
         $user = Auth::user();
         return view('users.edit',compact('user'));
@@ -51,9 +48,6 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if($id != Auth::id()){
-            abort(403,'Brak dostępu');
-        }
 
         $this->validate($request,[
             'name'=>'required|min:3',
@@ -85,16 +79,5 @@ class UsersController extends Controller
         $user->save();
         return back();
 
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }
