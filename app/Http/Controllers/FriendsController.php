@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Friend;
+use Illuminate\Support\Facades\Auth;
 
 class FriendsController extends Controller
 {
@@ -24,7 +26,15 @@ class FriendsController extends Controller
 
     public function add($friend_id)
     {
-        var_dump($friend_id);
+        Friend::create([
+
+            'user_id' => Auth::id(),
+            'friend_id' => $friend_id,
+
+        ]);
+
+        return back();
+
     }
 
     /**
