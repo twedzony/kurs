@@ -21,6 +21,18 @@
                         <p>
                         {{ $user->email }}
                         </p>
+
+                        @if (Auth::check() && $user->id !== Auth::id())
+
+                            <form method="POST" action="{{ url('/friends/' . $user->id ) }}">
+                             {{csrf_field()}}
+                            <button class="btn btn-success">Zaproś do znajomych</button>
+                            </form>
+
+
+                         @endif
+                    
+                        
                 </div>
             </div>
       </div>

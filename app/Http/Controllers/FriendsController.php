@@ -22,9 +22,9 @@ class FriendsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Request $request)
+    public function add($friend_id)
     {
-        //
+        var_dump($friend_id);
     }
 
     /**
@@ -33,19 +33,8 @@ class FriendsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function accept($friend_id)
     {
         //
     }
@@ -56,7 +45,7 @@ class FriendsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($friend_id)
     {
         //
     }
